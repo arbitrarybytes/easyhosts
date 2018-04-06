@@ -8,8 +8,9 @@ The hosts file is a computer file used by an operating system to map hostnames t
 
 Developers who frequently need to switch their hosts entries between development, testing and other environments will find the convention based approach of Easy Hosts both intuitive and simple.
 
-## Easy Hosts 2 available for download
-### New in this release:
+## Easy Hosts 2 is available for [download](https://github.com/arbitrarybytes/easyhosts/releases/tag/v2.0)
+
+#### New in this release:
 
 - Ability to add new hosts file
 - Ability to delete selected host file
@@ -20,7 +21,7 @@ Developers who frequently need to switch their hosts entries between development
 
 2. Need to quickly create hosts file from selected text? Select the required host entries in the editor, right click, and select "Save selection as new file...". Provide the file name and the new host file is added to the available hosts list.
 
-3. Based on feedback, ability to add new hosts file added with Easy Hosts 2.
+3. Based on user feedback, ability to add new hosts file is now available.
 
 
 

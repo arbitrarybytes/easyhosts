@@ -1,0 +1,38 @@
+﻿<Application x:Class="EasyHosts.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             DispatcherUnhandledException="Application_DispatcherUnhandledException"
+             StartupUri="Shell.xaml">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <!--<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/"></ResourceDictionary>-->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/mauve.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/baselight.xaml" />
+                <!--<ResourceDictionary Source="pack://application:,,,/MahApps.Metro.Resources;component/Icons.xaml" />-->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+
+    <JumpList.JumpList>
+        <JumpList>
+            <JumpTask ApplicationPath="%windir%\system32\cmd.exe"
+                      IconResourcePath="%windir%\system32\cmd.exe"
+                      IconResourceIndex="0" Arguments="/K ipconfig /flushdns" 
+                      Description="Flush the DNS Resolver cache"
+                      Title="Flush DNS Cache" CustomCategory="System Tasks" />
+
+            <!--<JumpTask ApplicationPath="%windir%\system32\cmd.exe"
+                      Arguments="/K iisreset" IconResourcePath="%windir%\system32\cmd.exe"
+                      IconResourceIndex="0" Description="Perform a reset on IIS Web Server"
+                      Title="IIS Reset" CustomCategory="System Tasks" />-->
+        </JumpList>
+    </JumpList.JumpList>
+
+</Application>

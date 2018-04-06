@@ -1,0 +1,219 @@
+﻿<controls:MetroWindow x:Class="EasyHosts.Shell"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:views="clr-namespace:EasyHosts.Views"
+        xmlns:viewModels="clr-namespace:EasyHosts.ViewModels"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized"
+        WindowTransitionsEnabled="True" ShowIconOnTitleBar="False"
+        ShowWindowCommandsOnTop="False" GlowBrush="{DynamicResource AccentColorBrush}"
+        ResizeMode="CanResizeWithGrip" MinHeight="480" MinWidth="760" TitleCaps="True"
+        Title="EASY HOSTS" Icon="eh.ico" >
+    <controls:MetroWindow.DataContext>
+        <viewModels:ShellViewModel />
+    </controls:MetroWindow.DataContext>
+
+    <controls:MetroWindow.Flyouts>
+        <controls:FlyoutsControl>
+            <controls:Flyout Header="SETTINGS" Position="Right" Theme="Adapt" IsPinned="False"
+                             Width="Auto" x:Name="ThemeSettingsFlyout">
+                <Grid>
+                    <Grid.Resources>
+                        <Style TargetType="{x:Type FrameworkElement}">
+                            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                        </Style>
+                    </Grid.Resources>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <CheckBox x:Name="ChkAutoFlush" Checked="AutoFlushOnCheckedChanged" Unchecked="AutoFlushOnCheckedChanged" 
+                              Margin="10" Grid.Row="0" FontSize="{DynamicResource WindowTitleFontSize}" Content=" auto flush dns on hosts change" />
+
+                    <controls:ToggleSwitch Grid.Row="1" OnLabel="DARK " OffLabel="LIGHT " IsCheckedChanged="DarkTheme_IsCheckedChanged"
+                                           x:Name="DarkTheme" Cursor="Hand" Margin="10" />
+
+                    <ListBox Grid.Row="2" x:Name="ThemeColorsList" VerticalAlignment="Top" SelectionChanged="ThemeColors_SelectionChanged"
+                             HorizontalAlignment="Left" Margin="10" SelectionMode="Single">
+                        <ListBox.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
+                        </ListBox.Resources>
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="5" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border Width="50" Height="50" Background="{Binding ColorBrush}" HorizontalAlignment="Left" Cursor="Hand" Margin="4" ToolTip="{Binding Name}">
+                                    <Path HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"
+                                          Height="20" Width="20" Stretch="Uniform" x:Name="ColorPath"
+                                          Fill="{DynamicResource IdealForegroundColorBrush}"
+                                          Data="M44.02605,20.846C44.02605,20.846 63.682006,24.103257 63.682006,38.870418 63.682006,42.772187 63.682006,49.664208 63.682006,53.565377 63.682006,66.221799 51.658645,58.015256 51.658645,50.555524 51.658645,40.738351 60.340182,37.173087 56.365394,33.199718z M25.529025,0C34.740886,0,39.964213,12.976948,40.281676,22.477042L40.293128,23.153271 40.635634,23.496004C44.15071,27.013427 48.794879,31.660645 50.360019,33.226604 52.995978,35.863305 51.193019,38.789006 50.089023,39.892009 48.98503,40.995406 28.241208,61.738416 28.241208,61.738416 25.936236,64.043717 17.883273,59.726617 10.261396,52.099114 2.63244,44.474008 -1.684536,36.421304 0.6204343,34.116004L22.599233,12.137394C22.599233,12.137394 24.072108,10.731551 26.071624,10.752226 27.118989,10.763056 28.310851,11.165289 29.511216,12.365994L31.998191,14.858796C33.357127,19.144596 32.48714,22.803398 31.852197,24.675799 30.646153,25.4376 29.839215,26.7741 29.839215,28.308002 29.839215,30.683002 31.76516,32.610805 34.144168,32.610805 36.52415,32.610805 38.450095,30.683002 38.450095,28.308002 38.450095,26.808 37.681121,25.490899 36.519145,24.7214 36.644145,23.702499 36.722144,21.654397 36.354106,19.211597 36.354106,19.211597 36.823226,19.681035 37.592975,20.451304L37.670257,20.528639 37.615382,20.036525C36.595061,11.949274 32.102916,2.4615231 25.529025,2.4615231 17.491012,2.4615231 15.683008,10.664832 15.683008,13.53907L13.222004,13.53907C13.222004,8.3047702,16.56301,0,25.529025,0z">
+                                        <Path.Style>
+                                            <Style TargetType="Path">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=IsSelected}" Value="True">
+                                                        <Setter Property="Visibility" Value="Visible" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=IsMouseOver}" Value="True">
+                                                        <Setter Property="Visibility" Value="Visible" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Path.Style>
+                                    </Path>
+                                </Border>
+                                <!--<Rectangle Width="50" Height="50" Fill="{Binding ColorBrush}" Margin="5">
+                                    
+                                </Rectangle>-->
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Style.Resources>
+                                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
+                                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Transparent"/>
+                                </Style.Resources>
+                                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True" >
+                                        <!--<Setter Property="FontWeight" Value="Bold" />-->
+                                        <Setter Property="Background" Value="Transparent" />
+
+                                        <!--<Setter Property="{Binding ElementName=ColorPath, Path=Visibility}" Value="Visible" />-->
+                                        <!--<Setter Property="Foreground" Value="Black" />-->
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+
+                </Grid>
+            </controls:Flyout>
+
+            <controls:Flyout Header="ABOUT" Position="Right" Theme="Inverse" IsModal="True"
+                             x:Name="AboutFlyout" MinWidth="350">
+                <Grid>
+                    <Grid.Resources>
+                        <Style TargetType="{x:Type FrameworkElement}">
+                            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                        </Style>
+                    </Grid.Resources>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Margin="10" Orientation="Horizontal">
+                        <Image Height="36" Width="36" Margin="10"
+                               Source="eh.ico" Stretch="Uniform"
+                               VerticalAlignment="Center" />
+                        <TextBlock FontWeight="ExtraLight" FontSize="20" Text="EASY HOSTS" 
+                                   Margin="10" VerticalAlignment="Center" />
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="1" Margin="10" x:Name="VersionTextBlock" />
+
+                    <TextBlock Grid.Row="2" Margin="10">
+                        <Run Text="New in this release: " />
+                        <LineBreak />
+                        <Run Text="* Ability to add a new hosts file" />
+                        <LineBreak />
+                        <Run Text="* Ability to remove hosts file" />
+                        <LineBreak />
+                        <Run Text="* Improved about section" />
+                        <LineBreak />
+                        <Run Text="* Other improvements..." />
+                    </TextBlock>
+
+                    <Button Grid.Row="3" Margin="10" Cursor="Hand"
+                            Click="CheckForUpdatesClicked" Style="{DynamicResource MetroAccentButton}"
+                            Content="Check for updates" />
+
+                    <TextBlock Grid.Row="4" Margin="10" FontSize="12"
+                               Text="© 2015 Vaibhav Sharma | All Rights Reserved"/>
+
+
+                </Grid>
+
+            </controls:Flyout>
+
+            <controls:Flyout Header="NEW HOSTS FILE" Position="Right" Theme="Inverse" IsModal="True"
+                             x:Name="NewFileFlyout" MinWidth="350">
+                <Grid>
+                    <Grid.Resources>
+                        <Style TargetType="{x:Type FrameworkElement}">
+                            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                        </Style>
+                    </Grid.Resources>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!--<StackPanel Grid.Row="0" Margin="10" Orientation="Horizontal">
+                        <Image Height="36" Width="36" Margin="10"
+                               Source="Resources/add.png" Stretch="Uniform"
+                               VerticalAlignment="Center" />
+                        <TextBlock FontWeight="ExtraLight" FontSize="20" Text="EASY HOSTS" 
+                                   Margin="10" VerticalAlignment="Center" />
+                    </StackPanel>-->
+                    <TextBlock Grid.Row="0" FontWeight="ExtraLight" FontSize="16" Text="FILE NAME" 
+                                   Margin="10" VerticalAlignment="Center" />
+
+                    <TextBox Grid.Row="1" Margin="10" x:Name="NewFileTextBox" />
+
+
+                    <Button Grid.Row="2" Margin="10" Cursor="Hand"
+                            Click="NewFileClicked" Style="{DynamicResource MetroAccentButton}"
+                            Content=" CREATE " />
+
+                    <TextBlock Grid.Row="3" Margin="10" FontSize="12" x:Name="NewFileMsg"
+                               Text="Just the file name (we'll manage extensions)."/>
+
+
+                </Grid>
+
+            </controls:Flyout>
+
+        </controls:FlyoutsControl>
+    </controls:MetroWindow.Flyouts>
+    <controls:MetroWindow.WindowCommands>
+        <controls:WindowCommands>
+            <Button Content="SETTINGS" Cursor="Hand" Click="SettingsClicked"/>
+            <Button Content="ABOUT" Cursor="Hand" Click="AboutClicked" />
+        </controls:WindowCommands>
+    </controls:MetroWindow.WindowCommands>
+
+    <controls:MetroAnimatedTabControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+            HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+            TabStripPlacement="Left" Margin="0" Padding="0">
+        <controls:MetroAnimatedTabControl.Resources>
+            <Style TargetType="{x:Type TabPanel}">
+                <Setter Property="Background" Value="{StaticResource AccentColorBrush4}" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Width" Value="0" />
+            </Style>
+        </controls:MetroAnimatedTabControl.Resources>
+        <controls:MetroTabItem HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <views:Hosts DataContext="{Binding Hosts}" x:Name="HostsView" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
+        </controls:MetroTabItem>
+    </controls:MetroAnimatedTabControl>
+
+</controls:MetroWindow>

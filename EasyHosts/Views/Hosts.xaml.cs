@@ -212,18 +212,6 @@ namespace EasyHosts.Views
             }
         }
 
-        //private void OpenCommandBindingCanExecute(object sender, CanExecuteRoutedEventArgs e)
-        //{
-
-        //    if (HostsContext != null && HostsContext.SelectedHostFile != null)
-        //    {
-        //        e.CanExecute = true; //define if command can be executed
-        //        return;
-        //    }
-
-        //    e.CanExecute = false;
-        //}
-
         private void SaveCommandBindingExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             if (HostsContext == null || HostsContext.HostFiles == null || HostsContext.SelectedHostFile == null)
@@ -325,26 +313,5 @@ namespace EasyHosts.Views
         }
 
         #endregion
-
-        //private async void ShowInputDialog(object sender, RoutedEventArgs e)
-        //{
-        //    /*var dlgSettings = new MetroDialogSettings()
-        //                        {
-        //                            AffirmativeButtonText = " create host file ",
-        //                            AnimateShow = true,
-        //                            AnimateHide = true,
-        //                            ColorScheme = MetroDialogColorScheme.Theme,
-        //                            NegativeButtonText = " cancel "
-        //                        };*/
-        //    var metroWin = Application.Current.MainWindow as MetroWindow;
-
-        //    //var result = await metroWin.ShowInputAsync("new host file", "please enter the host file name:", dlgSettings);
-        //    //var result = await this.ShowInputAsync("Hello!", "What is your name?");
-
-        //    //if (result == null) //user pressed cancel
-        //        //return;
-
-        //    await metroWin.ShowMessageAsync("new file created", "hello!");
-        //}
     }
 }

@@ -8,15 +8,6 @@
             IsDirty = false;
         }
 
-        //public string HostEntryName
-        //{
-        //    get { return _hostEntryName; }
-        //    set
-        //    {
-        //        _hostEntryName = value;
-        //        OnPropertyChanged("HostEntryName");
-        //    }
-        //}
         public string HostEntryPath
         {
             get { return _hostEntryPath; }

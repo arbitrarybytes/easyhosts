@@ -6,7 +6,8 @@
         xmlns:viewModels="clr-namespace:EasyHosts.ViewModels"
         WindowStartupLocation="CenterScreen" WindowState="Maximized"
         WindowTransitionsEnabled="True" ShowIconOnTitleBar="False"
-        ShowWindowCommandsOnTop="False" GlowBrush="{DynamicResource AccentColorBrush}"
+        RightWindowCommandsOverlayBehavior="Always"
+        GlowBrush="{DynamicResource AccentColorBrush}"
         ResizeMode="CanResizeWithGrip" MinHeight="480" MinWidth="760" TitleCaps="True"
         Title="EASY HOSTS" Icon="eh.ico" >
     <controls:MetroWindow.DataContext>
@@ -166,14 +167,6 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-
-                    <!--<StackPanel Grid.Row="0" Margin="10" Orientation="Horizontal">
-                        <Image Height="36" Width="36" Margin="10"
-                               Source="Resources/add.png" Stretch="Uniform"
-                               VerticalAlignment="Center" />
-                        <TextBlock FontWeight="ExtraLight" FontSize="20" Text="EASY HOSTS" 
-                                   Margin="10" VerticalAlignment="Center" />
-                    </StackPanel>-->
                     <TextBlock Grid.Row="0" FontWeight="ExtraLight" FontSize="16" Text="FILE NAME" 
                                    Margin="10" VerticalAlignment="Center" />
 
@@ -185,7 +178,7 @@
                             Content=" CREATE " />
 
                     <TextBlock Grid.Row="3" Margin="10" FontSize="12" x:Name="NewFileMsg"
-                               Text="Just the file name (we'll manage extensions)."/>
+                               Text="Just the file name (we'll manage the extensions)."/>
 
 
                 </Grid>
@@ -194,12 +187,12 @@
 
         </controls:FlyoutsControl>
     </controls:MetroWindow.Flyouts>
-    <controls:MetroWindow.WindowCommands>
+    <controls:MetroWindow.RightWindowCommands>
         <controls:WindowCommands>
             <Button Content="SETTINGS" Cursor="Hand" Click="SettingsClicked"/>
             <Button Content="ABOUT" Cursor="Hand" Click="AboutClicked" />
         </controls:WindowCommands>
-    </controls:MetroWindow.WindowCommands>
+    </controls:MetroWindow.RightWindowCommands>
 
     <controls:MetroAnimatedTabControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
             HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
@@ -215,5 +208,4 @@
             <views:Hosts DataContext="{Binding Hosts}" x:Name="HostsView" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
         </controls:MetroTabItem>
     </controls:MetroAnimatedTabControl>
-
 </controls:MetroWindow>

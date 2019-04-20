@@ -1,0 +1,16 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/EasyHosts/obj/Debug/App.baml
+/EasyHosts/obj/Debug/App.g.cs
+/EasyHosts/obj/Debug/App.g.i.cs
+/EasyHosts/obj/Release/EasyHosts.csproj.CoreCompileInputs.cache
+/EasyHosts/obj/Release/App.g.cs
+/EasyHosts/obj/Release/App.baml
+/EasyHosts/obj/Debug/EasyHosts.csprojAssemblyReference.cache
+/EasyHosts/obj/Debug/EasyHosts.csproj.CoreCompileInputs.cache
+/Deploy
+/EasyHosts/obj
+/packages

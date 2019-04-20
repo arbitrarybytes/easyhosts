@@ -10,7 +10,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Vaibhav Sharma")]
 [assembly: AssemblyProduct("Easy Hosts")]
-[assembly: AssemblyCopyright("Copyright © Vaibhav Sharma 2018")]
+[assembly: AssemblyCopyright("Copyright © Vaibhav Sharma 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -49,5 +49,5 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.2015.0308.0")]
-[assembly: AssemblyFileVersion("2.2015.0308.0")]
+[assembly: AssemblyVersion("2.2019.320.0")]
+[assembly: AssemblyFileVersion("2.2019.320.0")]
